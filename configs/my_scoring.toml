@@ -1,0 +1,51 @@
+run_type = "scoring"
+json_out_config = "scoring_simple.json"
+
+[parameters]
+smiles_file = "sampling.csv"       # <-- update this to your file name
+output_csv = "scoring_results.csv"
+
+[scoring]
+type = "geometric_mean"
+
+# QED
+[[scoring.component]]
+[scoring.component.QED]
+[[scoring.component.QED.endpoint]]
+name = "QED"
+weight = 1
+
+# logP (SlogP)
+[[scoring.component]]
+[scoring.component.SlogP]
+[[scoring.component.SlogP.endpoint]]
+name = "SlogP (RDKit)"
+weight = 1
+
+# Molecular Weight
+[[scoring.component]]
+[scoring.component.MolecularWeight]
+[[scoring.component.MolecularWeight.endpoint]]
+name = "Molecular weight"
+weight = 1
+
+# Synthetic Accessibility
+[[scoring.component]]
+[scoring.component.SAScore]
+[[scoring.component.SAScore.endpoint]]
+name = "SA score"
+weight = 1
+
+# Lipinski: HBond Acceptors
+[[scoring.component]]
+[scoring.component.HBondAcceptors]
+[[scoring.component.HBondAcceptors.endpoint]]
+name = "Lipinski H-bond acceptors"
+weight = 1
+
+# Lipinski: HBond Donors
+[[scoring.component]]
+[scoring.component.HBondDonors]
+[[scoring.component.HBondDonors.endpoint]]
+name = "Lipinski H-bond donors"
+weight = 1
